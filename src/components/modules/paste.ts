@@ -211,11 +211,12 @@ export default class Paste extends Module {
 
     console.log(dataTransfer)
     console.log(htmlData)
+    const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:word") || htmlData.includes("w:WordDocumen")
     /** If there is no HTML or HTML string is equal to plain one, process it as plain text */
     if (!cleanData.trim() || cleanData.trim() === plainData || !$.isHTMLString(cleanData)) {
       await this.processText(plainData);
     } else {
-      await this.processText(cleanData, true);
+      await this.processText(cleanData, true,isWord);
     }
   }
 
@@ -225,8 +226,11 @@ export default class Paste extends Module {
    * @param {string} data - text to process. Can be HTML or plain.
    * @param {boolean} isHTML - if passed string is HTML, this parameter should be true
    */
-  public async processText(data: string, isHTML = false): Promise<void> {
+  public async processText(data: string, isHTML = false, isWord=false): Promise<void> {
     const { Caret, BlockManager } = this.Editor;
+    if(isWord){
+      data = data.replace(/(\n)/g, '');
+    }
     const dataToInsert = isHTML ? this.processHTML(data) : this.processPlain(data);
 console.log({dataToInsert})
     if (!dataToInsert.length) {
@@ -234,6 +238,7 @@ console.log({dataToInsert})
     }
     console.log([...dataToInsert])
     console.log(data)
+    
     if (dataToInsert.length === 1) {
       if (!dataToInsert[0].isBlock) {
         this.processInlinePaste(dataToInsert.pop());
