@@ -226,7 +226,7 @@ export default class Paste extends Module {
   public async processText(data: string, isHTML = false): Promise<void> {
     const { Caret, BlockManager } = this.Editor;
     const dataToInsert = isHTML ? this.processHTML(data) : this.processPlain(data);
-
+console.log({dataToInsert})
     if (!dataToInsert.length) {
       return;
     }
@@ -524,7 +524,7 @@ export default class Paste extends Module {
     wrapper.innerHTML = innerHTML;
 
     const nodes = this.getNodes(wrapper);
-
+    console.log(nodes)
     return nodes
       .map((node) => {
         let content, tool = Tools.defaultTool, isBlock = false;
