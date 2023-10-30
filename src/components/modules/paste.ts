@@ -229,7 +229,7 @@ export default class Paste extends Module {
   public async processText(data: string, isHTML = false, isWord=false): Promise<void> {
     const { Caret, BlockManager } = this.Editor;
     if(isWord){
-      data = data.replace(/(\n)/g, ' ');
+      //data = data.replace(/(\n)/g, ' ');
     }
     const dataToInsert = isHTML ? this.processHTML(data) : this.processPlain(data);
 
