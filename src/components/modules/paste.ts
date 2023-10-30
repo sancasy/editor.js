@@ -516,6 +516,7 @@ export default class Paste extends Module {
   private processHTML(innerHTML: string): PasteData[] {
     const { Tools } = this.Editor;
     const wrapper = $.make('DIV');
+    console.log("PROCESS HTML")
 
     wrapper.innerHTML = innerHTML;
 
@@ -577,7 +578,7 @@ export default class Paste extends Module {
    */
   private processPlain(plain: string): PasteData[] {
     const { defaultBlock } = this.config as {defaultBlock: string};
-
+    console.log("PROCESS PLAIN")
     if (!plain) {
       return [];
     }
