@@ -209,6 +209,8 @@ export default class Paste extends Module {
     const customConfig = Object.assign({}, toolsTags, Tools.getAllInlineToolsSanitizeConfig(), { br: {} });
     const cleanData = clean(htmlData, customConfig);
 
+    console.log(dataTransfer)
+    console.log(htmlData)
     /** If there is no HTML or HTML string is equal to plain one, process it as plain text */
     if (!cleanData.trim() || cleanData.trim() === plainData || !$.isHTMLString(cleanData)) {
       await this.processText(plainData);
