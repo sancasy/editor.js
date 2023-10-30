@@ -231,8 +231,9 @@ export default class Paste extends Module {
     if(isWord){
       //data = data.replace(/(\n)/g, ' ');
     }
+    console.log(isHTML, isWord, data)
     const dataToInsert = isHTML ? this.processHTML(data) : this.processPlain(data);
-
+console.log([...dataToInsert])
     if (!dataToInsert.length) {
       return;
     }
