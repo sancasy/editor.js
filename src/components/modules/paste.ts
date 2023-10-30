@@ -229,11 +229,11 @@ export default class Paste extends Module {
   public async processText(data: string, isHTML = false, isWord=false): Promise<void> {
     const { Caret, BlockManager } = this.Editor;
     if(isWord){
-      //data = data.replace(/(\n)/g, ' ');
+      data = data.replace(/(\n)/g, ' ');
     }
-    console.log(isHTML, isWord, data)
+    
     const dataToInsert = isHTML ? this.processHTML(data) : this.processPlain(data);
-console.log([...dataToInsert])
+
     if (!dataToInsert.length) {
       return;
     }
@@ -566,9 +566,9 @@ console.log([...dataToInsert])
         //const customConfig = Object.assign({}, toolTags, tool.baseSanitizeConfig);
         
         const customConfig = Object.assign({}, toolTags, tool.sanitizeConfig);
-        console.log(content.innerHTML, customConfig, toolTags, tool)
+        
         content.innerHTML = clean(content.innerHTML, customConfig);
-        console.log(content.innerHTML)
+        
 
         const event = this.composePasteEvent('tag', {
           data: content,
@@ -678,7 +678,7 @@ console.log([...dataToInsert])
 
     /** If there is no pattern substitute - insert string as it is */
     if (BlockManager.currentBlock && BlockManager.currentBlock.currentInput) {
-      console.log("CHECK")
+      
       const currentToolSanitizeConfig = BlockManager.currentBlock.tool.baseSanitizeConfig;
 
       document.execCommand(
