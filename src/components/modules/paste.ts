@@ -169,7 +169,7 @@ export default class Paste extends Module {
     const includesFiles = types.includes ? types.includes('Files') : (types as any).contains('Files');
     
 
-    if (includesFiles && false) {
+    if (includesFiles) {
       
       await this.processFiles(dataTransfer.files);
 
