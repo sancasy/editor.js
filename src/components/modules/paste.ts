@@ -230,7 +230,8 @@ console.log({dataToInsert})
     if (!dataToInsert.length) {
       return;
     }
-
+    console.log([...dataToInsert])
+    console.log(data)
     if (dataToInsert.length === 1) {
       if (!dataToInsert[0].isBlock) {
         this.processInlinePaste(dataToInsert.pop());
@@ -240,7 +241,7 @@ console.log({dataToInsert})
 
       return;
     }
-
+    
     const isCurrentBlockDefault = BlockManager.currentBlock && BlockManager.currentBlock.tool.isDefault;
     const needToReplaceCurrentBlock = isCurrentBlockDefault && BlockManager.currentBlock.isEmpty;
 
