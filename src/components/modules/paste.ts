@@ -564,8 +564,9 @@ console.log([...dataToInsert])
           return result;
         }, {});
         const customConfig = Object.assign({}, toolTags, tool.baseSanitizeConfig);
-
+        console.log(content.innerHTML, customConfig)
         content.innerHTML = clean(content.innerHTML, customConfig);
+        console.log(content.innerHTML)
 
         const event = this.composePasteEvent('tag', {
           data: content,
