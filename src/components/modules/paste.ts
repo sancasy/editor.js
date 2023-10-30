@@ -778,6 +778,7 @@ console.log({dataToInsert})
    * @returns {Node[]}
    */
   private processElementNode(node: Node, nodes: Node[], destNode: Node): Node[] | void {
+    console.log("PROCESS_ELEMENT")
     const tags = Object.keys(this.toolsTags);
 
     const element = node as HTMLElement;
@@ -797,8 +798,11 @@ console.log({dataToInsert})
       ({ tagName }) => $.blockElements.includes(tagName.toLowerCase())
     );
 
+    console.log({containsBlockElements})
+
     /** Append inline elements to previous fragment */
     if (!isBlockElement && !isSubstitutable && !containsAnotherToolTags) {
+      console.log("A")
       destNode.appendChild(element);
 
       return [...nodes, destNode];
@@ -808,6 +812,7 @@ console.log({dataToInsert})
       (isSubstitutable && !containsAnotherToolTags) ||
       (isBlockElement && !containsBlockElements && !containsAnotherToolTags)
     ) {
+      console.log("B")
       return [...nodes, destNode, element];
     }
   }
@@ -823,6 +828,7 @@ console.log({dataToInsert})
    */
   private getNodes(wrapper: Node): Node[] {
     const children = Array.from(wrapper.childNodes);
+    console.log({children})
     let elementNodeProcessingResult: Node[] | void;
 
     const reducer = (nodes: Node[], node: Node): Node[] => {
