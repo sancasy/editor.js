@@ -675,7 +675,8 @@ console.log([...dataToInsert])
 
     /** If there is no pattern substitute - insert string as it is */
     if (BlockManager.currentBlock && BlockManager.currentBlock.currentInput) {
-      const currentToolSanitizeConfig = BlockManager.currentBlock.tool.sanitizeConfig;
+      console.log("CHECK")
+      const currentToolSanitizeConfig = BlockManager.currentBlock.tool.baseSanitizeConfig;
 
       document.execCommand(
         'insertHTML',
