@@ -167,15 +167,15 @@ export default class Paste extends Module {
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const includesFiles = types.includes ? types.includes('Files') : (types as any).contains('Files');
-    console.log(1)
+    
 
     if (includesFiles && false) {
-      console.log(2)
+      
       await this.processFiles(dataTransfer.files);
 
       return;
     }
-    console.log(3)
+    
 
     const editorJSData = dataTransfer.getData(this.MIME_TYPE);
     const plainData = dataTransfer.getData('text/plain');
@@ -209,8 +209,8 @@ export default class Paste extends Module {
     const customConfig = Object.assign({}, toolsTags, Tools.getAllInlineToolsSanitizeConfig(), { br: {} });
     const cleanData = clean(htmlData, customConfig);
 
-    console.log(dataTransfer)
-    console.log(htmlData)
+    
+    
     const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:word") || htmlData.includes("w:WordDocumen")
     /** If there is no HTML or HTML string is equal to plain one, process it as plain text */
     if (!cleanData.trim() || cleanData.trim() === plainData || !$.isHTMLString(cleanData)) {
@@ -229,15 +229,15 @@ export default class Paste extends Module {
   public async processText(data: string, isHTML = false, isWord=false): Promise<void> {
     const { Caret, BlockManager } = this.Editor;
     if(isWord){
-      data = data.replace(/(\n)/g, '');
+      data = data.replace(/(\n)/g, ' ');
     }
     const dataToInsert = isHTML ? this.processHTML(data) : this.processPlain(data);
-console.log({dataToInsert})
+
     if (!dataToInsert.length) {
       return;
     }
-    console.log([...dataToInsert])
-    console.log(data)
+    
+    
     
     if (dataToInsert.length === 1) {
       if (!dataToInsert[0].isBlock) {
@@ -527,12 +527,12 @@ console.log({dataToInsert})
   private processHTML(innerHTML: string): PasteData[] {
     const { Tools } = this.Editor;
     const wrapper = $.make('DIV');
-    console.log("PROCESS HTML")
+    
 
     wrapper.innerHTML = innerHTML;
 
     const nodes = this.getNodes(wrapper);
-    console.log(nodes)
+    
     return nodes
       .map((node) => {
         let content, tool = Tools.defaultTool, isBlock = false;
@@ -589,7 +589,7 @@ console.log({dataToInsert})
    */
   private processPlain(plain: string): PasteData[] {
     const { defaultBlock } = this.config as {defaultBlock: string};
-    console.log("PROCESS PLAIN")
+    
     if (!plain) {
       return [];
     }
@@ -786,7 +786,7 @@ console.log({dataToInsert})
    * @returns {Node[]}
    */
   private processElementNode(node: Node, nodes: Node[], destNode: Node): Node[] | void {
-    console.log("PROCESS_ELEMENT")
+    
     const tags = Object.keys(this.toolsTags);
 
     const element = node as HTMLElement;
@@ -806,11 +806,11 @@ console.log({dataToInsert})
       ({ tagName }) => $.blockElements.includes(tagName.toLowerCase())
     );
 
-    console.log({containsBlockElements})
+    
 
     /** Append inline elements to previous fragment */
     if (!isBlockElement && !isSubstitutable && !containsAnotherToolTags) {
-      console.log("A")
+    
       destNode.appendChild(element);
 
       return [...nodes, destNode];
@@ -820,7 +820,7 @@ console.log({dataToInsert})
       (isSubstitutable && !containsAnotherToolTags) ||
       (isBlockElement && !containsBlockElements && !containsAnotherToolTags)
     ) {
-      console.log("B")
+    
       return [...nodes, destNode, element];
     }
   }
@@ -836,7 +836,7 @@ console.log({dataToInsert})
    */
   private getNodes(wrapper: Node): Node[] {
     const children = Array.from(wrapper.childNodes);
-    console.log({children})
+    
     let elementNodeProcessingResult: Node[] | void;
 
     const reducer = (nodes: Node[], node: Node): Node[] => {
