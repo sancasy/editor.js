@@ -563,8 +563,10 @@ console.log([...dataToInsert])
 
           return result;
         }, {});
-        const customConfig = Object.assign({}, toolTags, tool.baseSanitizeConfig);
-        console.log(content.innerHTML, customConfig)
+        //const customConfig = Object.assign({}, toolTags, tool.baseSanitizeConfig);
+        
+        const customConfig = Object.assign({}, toolTags, tool.sanitizeConfig);
+        console.log(content.innerHTML, customConfig, toolTags, tool)
         content.innerHTML = clean(content.innerHTML, customConfig);
         console.log(content.innerHTML)
 
