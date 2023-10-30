@@ -1,4 +1,4 @@
-import Paragraph from '../../tools/paragraph/dist/bundle';
+
 import Module from '../__module';
 import * as _ from '../utils';
 import { SanitizerConfig, ToolConstructable, ToolSettings } from '../../../types';
@@ -203,11 +203,7 @@ export default class Tools extends Module {
         class: LinkInlineTool,
         isInternal: true,
       },
-      paragraph: {
-        class: Paragraph,
-        inlineToolbar: true,
-        isInternal: true,
-      },
+     
       stub: {
         class: Stub,
         isInternal: true,
