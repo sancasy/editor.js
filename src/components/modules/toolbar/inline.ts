@@ -139,17 +139,17 @@ export default class InlineToolbar extends Module<InlineToolbarNodes> {
    * @param [needToShowConversionToolbar] - pass false to not to show Conversion Toolbar
    */
   public tryToShow(needToClose = false, needToShowConversionToolbar = true): void {
-    console.log("Try to show")
-    if (!this.allowedToShow() && false) {
-      console.log(1)
+    
+    if (!this.allowedToShow()) {
+    
       if (needToClose) {
-        console.log(2)
+    
         this.close();
       }
-console.log(3)
+
       return;
     }
-console.log(4)
+
     this.move();
     this.open(needToShowConversionToolbar);
     this.Editor.Toolbar.close();
@@ -511,9 +511,7 @@ console.log(4)
   private addToolsFiltered(): void {
     const currentSelection = SelectionUtils.get();
     const currentBlock = this.Editor.BlockManager.getBlock(currentSelection.anchorNode as HTMLElement);
-    console.log({currentBlock})
-    console.log(currentBlock.tool.inlineTools)
-    console.log(currentBlock.tool.inlineTools.values())
+  
     /**
      * Clear buttons list
      */
