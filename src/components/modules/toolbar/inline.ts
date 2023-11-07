@@ -139,14 +139,17 @@ export default class InlineToolbar extends Module<InlineToolbarNodes> {
    * @param [needToShowConversionToolbar] - pass false to not to show Conversion Toolbar
    */
   public tryToShow(needToClose = false, needToShowConversionToolbar = true): void {
+    console.log("Try to show")
     if (!this.allowedToShow()) {
+      console.log(1)
       if (needToClose) {
+        console.log(2)
         this.close();
       }
-
+console.log(3)
       return;
     }
-
+console.log(4)
     this.move();
     this.open(needToShowConversionToolbar);
     this.Editor.Toolbar.close();
