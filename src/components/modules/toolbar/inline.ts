@@ -140,7 +140,7 @@ export default class InlineToolbar extends Module<InlineToolbarNodes> {
    */
   public tryToShow(needToClose = false, needToShowConversionToolbar = true): void {
     console.log("Try to show")
-    if (!this.allowedToShow()) {
+    if (!this.allowedToShow() && false) {
       console.log(1)
       if (needToClose) {
         console.log(2)
