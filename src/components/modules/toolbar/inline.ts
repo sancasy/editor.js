@@ -511,7 +511,9 @@ console.log(4)
   private addToolsFiltered(): void {
     const currentSelection = SelectionUtils.get();
     const currentBlock = this.Editor.BlockManager.getBlock(currentSelection.anchorNode as HTMLElement);
-
+    console.log({currentBlock})
+    console.log(currentBlock.tool.inlineTools)
+    console.log(currentBlock.tool.inlineTools.values())
     /**
      * Clear buttons list
      */
