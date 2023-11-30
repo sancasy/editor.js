@@ -31,10 +31,11 @@ export default class ModificationsObserver extends Module {
    * @param block - changed Block
    */
   public onChange(block: BlockAPI): void {
+    console.log("onchange 1")
     if (this.disabled || !_.isFunction(this.config.onChange)) {
       return;
     }
-
+    console.log("onchange 2")
     this.config.onChange(this.Editor.API.methods, block);
   }
 }
