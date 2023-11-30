@@ -207,7 +207,7 @@ export default class Block extends EventsDispatcher<BlockEvents> {
       return [...Array.from(addedNodes), ...Array.from(removedNodes)]
         .some(node => $.isElement(node) && (node as HTMLElement).dataset.mutationFree === 'true');
     });
-
+console.log({shouldFireUpdate})
     /**
      * In case some mutation free elements are added or removed, do not trigger didMutated event
      */

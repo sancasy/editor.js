@@ -294,7 +294,7 @@ export default class BlockManager extends Module {
     /**
      * Force call of didMutated event on Block insertion
      */
-    console.log("insert")
+    
     this.blockDidMutated(block);
 
     if (needToFocus) {
@@ -371,7 +371,7 @@ export default class BlockManager extends Module {
     /**
      * Force call of didMutated event on Block insertion
      */
-    console.log("insert default")
+    
     this.blockDidMutated(block);
 
     if (needToFocus) {
@@ -833,7 +833,7 @@ export default class BlockManager extends Module {
    * @param block - mutated block
    */
   private blockDidMutated(block: Block): Block {
-    console.log("onchaaange")
+    
     this.Editor.ModificationsObserver.onChange(new BlockAPI(block));
 
     return block;
