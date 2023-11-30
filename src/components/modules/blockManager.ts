@@ -833,7 +833,7 @@ export default class BlockManager extends Module {
    * @param block - mutated block
    */
   private blockDidMutated(block: Block): Block {
-    console.log("DID MUTATE")
+    
     
     this.Editor.ModificationsObserver.onChange(new BlockAPI(block));
 
