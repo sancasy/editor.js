@@ -239,7 +239,7 @@ export default class BlockManager extends Module {
       tunesData,
     });
 
-    if (!readOnly || true) {
+    if (!readOnly) {
       this.bindBlockEvents(block);
     }
 
