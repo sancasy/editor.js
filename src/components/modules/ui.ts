@@ -180,7 +180,7 @@ export default class UI extends Module<UINodes> {
     /**
      * Prepare components based on read-only state
      */
-    if (!readOnlyEnabled || true) {
+    if (!readOnlyEnabled) {
       /**
        * Unbind all events
        */
