@@ -32,7 +32,7 @@ export default class ModificationsObserver extends Module {
    */
   public onChange(block: BlockAPI): void {
 
-    const isDisabled = this.disabled && false
+    const isDisabled = this.disabled
     
     if (isDisabled || !_.isFunction(this.config.onChange)) {
       return;
