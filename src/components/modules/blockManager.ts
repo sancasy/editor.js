@@ -774,6 +774,7 @@ export default class BlockManager extends Module {
   private bindBlockEvents(block: Block): void {
     const { BlockEvents } = this.Editor;
 
+    /*
     this.readOnlyMutableListeners.on(block.holder, 'keydown', (event: KeyboardEvent) => {
       BlockEvents.keydown(event);
     });
@@ -788,7 +789,7 @@ export default class BlockManager extends Module {
 
     this.readOnlyMutableListeners.on(block.holder, 'dragleave', (event: DragEvent) => {
       BlockEvents.dragLeave(event);
-    });
+    });*/
 
     block.on('didMutated', (affectedBlock: Block) => this.blockDidMutated(affectedBlock));
   }
