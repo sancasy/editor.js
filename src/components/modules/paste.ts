@@ -218,7 +218,8 @@ const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:
       return result;
     }, {});
 
-    const customConfig = Object.assign({}, toolsTags, Tools.getAllInlineToolsSanitizeConfig(), { br: {} });
+    const customConfig = Object.assign({}, toolsTags, Tools.getAllInlineToolsSanitizeConfig(), { br: {}, b: true,
+				i: true });
     const cleanData = clean(htmlData, customConfig);
 
     
@@ -230,6 +231,7 @@ const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:
       await this.processText(plainData);
     } else {
       console.log("sending cleanData")
+      console.log(cleanData)
       await this.processText(cleanData, true,isWord);
     }
   }
