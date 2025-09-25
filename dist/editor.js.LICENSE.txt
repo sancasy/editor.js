@@ -1,7 +1,7 @@
 /*!
  * CodeX.Tooltips
  * 
- * @version 1.0.2
+ * @version 1.0.5
  * 
  * @licence MIT
  * @author CodeX <https://codex.so>
@@ -31,8 +31,10 @@
  * @copyright CodeX (https://codex.so)
  * @license MIT
  * @author CodeX (https://codex.so)
- * @version 1.1.1
+ * @version 1.2.0
  */
+
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */
 
 /**
    * Editor.js
