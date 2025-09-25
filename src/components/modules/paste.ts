@@ -161,6 +161,7 @@ export default class Paste extends Module {
   public async processDataTransfer(dataTransfer: DataTransfer, isDragNDrop = false): Promise<void> {
     const { Tools } = this.Editor;
     const types = dataTransfer.types;
+    console.log(dataTransfer);
 
     /**
      * In Microsoft Edge types is DOMStringList. So 'contains' is used to check if 'Files' type included
