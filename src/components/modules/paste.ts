@@ -226,8 +226,10 @@ const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:
     
     /** If there is no HTML or HTML string is equal to plain one, process it as plain text */
     if (!cleanData.trim() || cleanData.trim() === plainData || !$.isHTMLString(cleanData)) {
+      console.log("sending plainData")
       await this.processText(plainData);
     } else {
+      console.log("sending cleanData")
       await this.processText(cleanData, true,isWord);
     }
   }
