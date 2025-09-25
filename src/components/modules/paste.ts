@@ -165,6 +165,15 @@ export default class Paste extends Module {
     console.log(files)
     console.log(types);
 
+       const editorJSData = dataTransfer.getData(this.MIME_TYPE);
+    const plainData = dataTransfer.getData('text/plain');
+    let htmlData = dataTransfer.getData('text/html');
+
+    console.log(editorJSData)
+    console.log(plainData)
+    console.log(htmlData)
+
+const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:word") || htmlData.includes("w:WordDocumen")
     /**
      * In Microsoft Edge types is DOMStringList. So 'contains' is used to check if 'Files' type included
      */
@@ -172,7 +181,7 @@ export default class Paste extends Module {
     const includesFiles = types.includes ? types.includes('Files') : (types as any).contains('Files');
     
 
-    if (includesFiles) {
+    if (includesFiles && !isWord) {
       
       await this.processFiles(dataTransfer.files);
 
@@ -180,13 +189,7 @@ export default class Paste extends Module {
     }
     
 
-    const editorJSData = dataTransfer.getData(this.MIME_TYPE);
-    const plainData = dataTransfer.getData('text/plain');
-    let htmlData = dataTransfer.getData('text/html');
-
-    console.log(editorJSData)
-    console.log(plainData)
-    console.log(htmlData)
+ 
 
     /**
      * If EditorJS json is passed, insert it
@@ -218,7 +221,7 @@ export default class Paste extends Module {
 
     
     
-    const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:word") || htmlData.includes("w:WordDocumen")
+    
     /** If there is no HTML or HTML string is equal to plain one, process it as plain text */
     if (!cleanData.trim() || cleanData.trim() === plainData || !$.isHTMLString(cleanData)) {
       await this.processText(plainData);
