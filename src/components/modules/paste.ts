@@ -168,10 +168,12 @@ export default class Paste extends Module {
        const editorJSData = dataTransfer.getData(this.MIME_TYPE);
     const plainData = dataTransfer.getData('text/plain');
     let htmlData = dataTransfer.getData('text/html');
+    const rtfData = dataTransfer.getData("text/rtf")
 
     console.log(editorJSData)
     console.log(plainData)
     console.log(htmlData)
+    console.log(rtfData)
 
 const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:word") || htmlData.includes("w:WordDocumen")
     /**
