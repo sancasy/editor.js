@@ -161,19 +161,15 @@ export default class Paste extends Module {
   public async processDataTransfer(dataTransfer: DataTransfer, isDragNDrop = false): Promise<void> {
     const { Tools } = this.Editor;
     const types = dataTransfer.types;
-    const files = dataTransfer.files
-    console.log(files)
-    console.log(types);
+    
+  
 
        const editorJSData = dataTransfer.getData(this.MIME_TYPE);
     const plainData = dataTransfer.getData('text/plain');
     let htmlData = dataTransfer.getData('text/html');
-    const rtfData = dataTransfer.getData("text/rtf")
+    
 
-    console.log(editorJSData)
-    console.log(plainData)
-    console.log(htmlData)
-    console.log(rtfData)
+  
 
 const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:word") || htmlData.includes("w:WordDocumen")
     /**
@@ -258,8 +254,10 @@ const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:
     
     if (dataToInsert.length === 1) {
       if (!dataToInsert[0].isBlock) {
+        console.log("process1")
         this.processInlinePaste(dataToInsert.pop());
       } else {
+        console.log("process2")
         this.processSingleBlock(dataToInsert.pop());
       }
 
@@ -268,8 +266,9 @@ const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:
     
     const isCurrentBlockDefault = BlockManager.currentBlock && BlockManager.currentBlock.tool.isDefault;
     const needToReplaceCurrentBlock = isCurrentBlockDefault && BlockManager.currentBlock.isEmpty;
-
-    dataToInsert.map(
+console.log("process3")
+console.log(dataToInsert)
+dataToInsert.map(
       async (content, i) => this.insertBlock(content, i === 0 && needToReplaceCurrentBlock)
     );
 
@@ -581,7 +580,8 @@ const isWord = htmlData.includes("Word.Document") || htmlData.includes("office:
         }, {});
         //const customConfig = Object.assign({}, toolTags, tool.baseSanitizeConfig);
         
-        const customConfig = Object.assign({}, toolTags, tool.sanitizeConfig);
+        const customConfig = Object.assign({}, toolTags, tool.sanitizeConfig, { b: true,
+				i: true });
         
         content.innerHTML = clean(content.innerHTML, customConfig);
         
